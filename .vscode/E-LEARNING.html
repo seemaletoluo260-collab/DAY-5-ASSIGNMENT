@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aitong Comprehensive School — Empowering Students Through Digital Learning</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,500&display=swap" rel="stylesheet" />
+  <style>
+/* ==========================================================================
+   AITONG COMPREHENSIVE SCHOOL — E-LEARNING LANDING PAGE
+   Palette: dark blue, white, gold — inspired by the Maasai Mara geometry
+   of Aitong, Narok County. Typography: Poppins throughout.
+   ========================================================================== */
+
+/* ---------- 1. CSS VARIABLES ---------- */
+:root {
+  /* Colours */
+  --navy-900: #0B1F3A;
+  --navy-700: #12326b;
+  --navy-600: #1a4085;
+  --gold-500: #D4AF37;
+  --gold-600: #b8952b;
+  --white: #ffffff;
+  --off-white: #F8F9FB;
+  --ivory: #F1EFE7;
+  --text-dark: #1c2530;
+  --text-muted: #5a6472;
+  --border-soft: #e6e9ef;
+
+  /* Shadows */
+  --shadow-sm: 0 2px 8px rgba(11, 31, 58, 0.06);
+  --shadow-md: 0 8px 24px rgba(11, 31, 58, 0.10);
+  --shadow-lg: 0 16px 40px rgba(11, 31, 58, 0.16);
+
+  /* Radius */
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 24px;
+  --radius-pill: 999px;
+
+  /* Spacing */
+  --space-section: 6rem;
+  --max-width: 1200px;
+
+  /* Type */
+  --font-main: 'Poppins', sans-serif;
+}
+
+/* ---------- 2. RESET ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-main);
+  color: var(--text-dark);
+  background: var(--off-white);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { display: block; max-width: 100%; }
+
+a { text-decoration: none; color: inherit; }
+
+ul { list-style: none; }
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  color: var(--navy-900);
+  line-height: 1.2;
+}
+
+.section-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+:focus-visible {
+  outline: 3px solid var(--gold-500);
+  outline-offset: 3px;
+}
+
+/* ---------- 3. SIGNATURE ELEMENT: MAASAI-INSPIRED PATTERN STRIP ---------- */
+/* A repeating triangular motif nodding to the beadwork geometry of the
+   Mara region — used as a divider instead of a generic gradient rule. */
+.pattern-strip {
+  height: 14px;
+  width: 100%;
+  background:
+    linear-gradient(135deg, var(--gold-500) 25%, transparent 25%) 0 0 / 20px 20px,
+    linear-gradient(225deg, var(--gold-500) 25%, transparent 25%) 0 0 / 20px 20px,
+    linear-gradient(315deg, var(--navy-900) 25%, transparent 25%) 0 0 / 20px 20px,
+    linear-gradient(45deg,  var(--navy-900) 25%, transparent 25%) 0 0 / 20px 20px;
+  background-color: var(--white);
+}
+
+.pattern-strip.thin {
+  height: 8px;
+  background-size: 12px 12px;
+}
+
+/* ---------- 4. BUTTONS ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.85rem 1.9rem;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.95rem;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease, color 0.2s ease;
+  white-space: nowrap;
+}
+
+.btn-gold {
+  background: var(--gold-500);
+  color: var(--navy-900);
+  box-shadow: var(--shadow-sm);
+}
+.btn-gold:hover {
+  background: var(--gold-600);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-ghost {
+  background: transparent;
+  border-color: var(--white);
+  color: var(--white);
+}
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-3px);
+}
+
+.btn-outline {
+  background: transparent;
+  border-color: var(--navy-900);
+  color: var(--navy-900);
+}
+.btn-outline:hover {
+  background: var(--navy-900);
+  color: var(--white);
+}
+
+.btn-sm { padding: 0.6rem 1.3rem; font-size: 0.85rem; width: 100%; }
+.btn-lg { padding: 1.1rem 2.6rem; font-size: 1.05rem; }
+
+/* ---------- 5. NAVIGATION ---------- */
+.site-header {
+  background: var(--navy-900);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-md);
+}
+
+.navbar {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.9rem 2rem;
+  flex-wrap: wrap;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.brand-text {
+  color: var(--white);
+  font-size: 1.05rem;
+  letter-spacing: 0.2px;
+}
+.brand-text strong { color: var(--gold-500); }
+.brand-text.light { font-size: 1rem; }
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+}
+
+.nav-links a {
+  color: var(--white);
+  font-weight: 500;
+  font-size: 0.95rem;
+  position: relative;
+  padding: 0.4rem 0;
+  transition: color 0.2s ease;
+}
+
+.nav-links a::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0;
+  height: 2px;
+  background: var(--gold-500);
+  transition: width 0.25s ease;
+}
+
+.nav-links a:hover {
+  color: var(--gold-500);
+}
+.nav-links a:hover::after {
+  width: 100%;
+}
+
+.nav-login {
+  padding: 0.6rem 1.6rem;
+}
+
+.nav-toggle { display: none; }
+.nav-burger { display: none; }
+
+/* ---------- 6. HERO ---------- */
+.hero {
+  background: linear-gradient(160deg, var(--navy-900) 0%, var(--navy-700) 100%);
+  color: var(--white);
+  padding: 5rem 2rem;
+}
+
+.hero-inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.eyebrow {
+  display: inline-block;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--gold-500);
+  margin-bottom: 1rem;
+}
+.eyebrow.center { display: block; text-align: center; }
+
+.hero h1 {
+  color: var(--white);
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  margin-bottom: 1.3rem;
+}
+
+.hero-lead {
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin-bottom: 2rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.hero-trust {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.trust-item {
+  display: flex;
+  flex-direction: column;
+}
+.trust-item strong {
+  font-size: 1.5rem;
+  color: var(--gold-500);
+}
+.trust-item span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.hero-art {
+  justify-self: center;
+  width: 100%;
+  max-width: 420px;
+}
+
+/* ---------- 7. SECTION TITLES ---------- */
+.section-title {
+  font-size: clamp(1.7rem, 3vw, 2.3rem);
+  margin-bottom: 3rem;
+}
+.section-title.center { text-align: center; margin-top: 0.2rem; }
+
+.features, .courses, .testimonials {
+  padding: var(--space-section) 0;
+}
+
+/* ---------- 8. FEATURES ---------- */
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.75rem;
+}
+
+.feature-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.6rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.feature-icon {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1.2rem;
+  border-radius: 50%;
+  background: var(--ivory);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feature-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.6rem;
+}
+
+.feature-card p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+/* ---------- 9. COURSES ---------- */
+.courses { background: var(--white); }
+
+.course-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.course-card {
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  background: var(--off-white);
+  border: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.course-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.course-thumb {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  overflow: hidden;
+}
+.course-thumb svg { width: 100%; height: 100%; }
+
+.course-body {
+  padding: 1.5rem;
+}
+
+.course-body h3 {
+  font-size: 1.15rem;
+  margin-bottom: 0.5rem;
+}
+
+.course-body p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+  margin-bottom: 1.3rem;
+  min-height: 3rem;
+}
+
+/* ---------- 10. WHY CHOOSE US ---------- */
+.why-us {
+  background: var(--off-white);
+  padding: var(--space-section) 0;
+}
+
+.why-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 3.5rem;
+  align-items: center;
+}
+
+.why-list {
+  margin-top: 2.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+}
+
+.why-list li {
+  display: flex;
+  gap: 1.2rem;
+  align-items: flex-start;
+}
+
+.why-num {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--navy-900);
+  color: var(--gold-500);
+  font-weight: 700;
+  font-size: 0.85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.why-list h4 {
+  font-size: 1.05rem;
+  margin-bottom: 0.25rem;
+}
+
+.why-list p {
+  color: var(--text-muted);
+  font-size: 0.92rem;
+}
+
+.why-art {
+  justify-self: center;
+  max-width: 320px;
+  width: 100%;
+}
+
+/* ---------- 11. STATISTICS ---------- */
+.stats {
+  background: var(--navy-900);
+  padding: 3.5rem 0;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  text-align: center;
+  gap: 2rem;
+}
+
+.stat-number {
+  display: block;
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--gold-500);
+}
+
+.stat-label {
+  display: block;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.9rem;
+  margin-top: 0.3rem;
+}
+
+/* ---------- 12. TESTIMONIALS ---------- */
+.testimonial-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+}
+
+.testimonial-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 2.2rem 1.8rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-soft);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+
+.avatar {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 2px solid var(--gold-500);
+}
+
+.stars {
+  color: var(--gold-500);
+  letter-spacing: 2px;
+  margin-bottom: 1rem;
+}
+
+.testimonial-card p {
+  color: var(--text-muted);
+  font-size: 0.93rem;
+  font-style: italic;
+  margin-bottom: 1.2rem;
+}
+
+.testimonial-card h4 {
+  font-size: 1rem;
+  margin-bottom: 0.15rem;
+}
+
+.testimonial-role {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ---------- 13. CALL TO ACTION ---------- */
+.cta {
+  background: linear-gradient(135deg, var(--navy-900), var(--navy-700));
+  padding: 5rem 0;
+}
+
+.cta-inner {
+  text-align: center;
+}
+
+.cta h2 {
+  color: var(--white);
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  margin-bottom: 0.9rem;
+}
+
+.cta p {
+  color: rgba(255, 255, 255, 0.82);
+  margin-bottom: 2rem;
+  font-size: 1.05rem;
+}
+
+/* ---------- 14. FOOTER ---------- */
+.site-footer {
+  background: var(--navy-900);
+  color: rgba(255, 255, 255, 0.85);
+  padding-top: 3.5rem;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1fr;
+  gap: 2.5rem;
+  padding-bottom: 3rem;
+}
+
+.footer-brand-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1rem;
+}
+
+.footer-brand p {
+  font-size: 0.88rem;
+  color: rgba(255, 255, 255, 0.6);
+  max-width: 30ch;
+}
+
+.footer-col h5 {
+  color: var(--gold-500);
+  font-size: 0.95rem;
+  margin-bottom: 1.1rem;
+  letter-spacing: 0.5px;
+}
+
+.footer-col ul {
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.footer-col a {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+  transition: color 0.2s ease;
+}
+.footer-col a:hover { color: var(--gold-500); }
+
+.footer-contact li {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.social-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--white);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+.social-icon:hover {
+  background: var(--gold-500);
+  border-color: var(--gold-500);
+  color: var(--navy-900);
+  transform: translateY(-3px);
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  text-align: center;
+  padding: 1.4rem 0;
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.55);
+}
+
+/* ==========================================================================
+   15. RESPONSIVE — TABLET
+   ========================================================================== */
+@media (max-width: 1024px) {
+  .feature-grid { grid-template-columns: repeat(2, 1fr); }
+  .course-grid { grid-template-columns: repeat(2, 1fr); }
+  .testimonial-grid { grid-template-columns: repeat(2, 1fr); }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); row-gap: 2.2rem; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .hero-inner { grid-template-columns: 1fr; text-align: center; }
+  .hero-art { order: -1; max-width: 320px; }
+  .hero-actions, .hero-trust { justify-content: center; }
+  .why-inner { grid-template-columns: 1fr; }
+  .why-art { order: -1; }
+}
+
+/* ==========================================================================
+   16. RESPONSIVE — MOBILE
+   ========================================================================== */
+@media (max-width: 680px) {
+  .navbar { padding: 0.8rem 1.2rem; }
+
+  .nav-burger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 20;
+  }
+  .nav-burger span {
+    width: 24px;
+    height: 2px;
+    background: var(--white);
+    transition: transform 0.25s ease, opacity 0.25s ease;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--navy-900);
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+  }
+  .nav-links li { border-top: 1px solid rgba(255,255,255,0.08); }
+  .nav-links a { display: block; padding: 1rem 1.5rem; }
+
+  .nav-toggle:checked ~ .nav-links {
+    max-height: 400px;
+  }
+  .nav-toggle:checked ~ .nav-burger span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .nav-toggle:checked ~ .nav-burger span:nth-child(2) { opacity: 0; }
+  .nav-toggle:checked ~ .nav-burger span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+  .nav-login { display: none; }
+
+  .section-inner { padding: 0 1.2rem; }
+
+  .feature-grid,
+  .course-grid,
+  .testimonial-grid { grid-template-columns: 1fr; }
+
+  .stats-grid { grid-template-columns: 1fr 1fr; }
+
+  .footer-grid { grid-template-columns: 1fr; text-align: center; }
+  .footer-brand-link { justify-content: center; }
+  .footer-col ul { align-items: center; }
+  .social-icons { justify-content: center; }
+
+  .hero { padding: 3.5rem 1.2rem; }
+  .hero-actions { flex-direction: column; align-items: stretch; }
+  .hero-trust { justify-content: center; gap: 1.6rem; }
+
+  .why-list li { text-align: left; }
+}
+
+</style>
+</head>
+<body>
+
+  <!-- ============ TOP PATTERN STRIP (signature element) ============ -->
+  <div class="pattern-strip" aria-hidden="true"></div>
+
+  <!-- ============ NAVIGATION ============ -->
+  <header class="site-header">
+    <nav class="navbar" aria-label="Primary">
+      <a href="#home" class="brand">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="42" height="42">
+            <polygon points="24,4 44,16 44,32 24,44 4,32 4,16" fill="none" stroke="#D4AF37" stroke-width="2"/>
+            <polygon points="24,12 36,19 36,29 24,36 12,29 12,19" fill="#D4AF37"/>
+            <polygon points="24,18 30,22 30,28 24,32 18,28 18,22" fill="#0B1F3A"/>
+          </svg>
+        </span>
+        <span class="brand-text">
+          <strong>Aitong</strong> Comprehensive School
+        </span>
+      </a>
+
+      <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-hidden="true" />
+      <label for="nav-toggle" class="nav-burger" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </label>
+
+      <ul class="nav-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#teachers">Teachers</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+
+      <a href="#login" class="btn btn-outline nav-login">Login</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- ============ HERO ============ -->
+    <section class="hero" id="home">
+      <div class="hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">Aitong, Narok County · Est. in the heart of the Mara</p>
+          <h1>Empowering Students Through Digital Learning</h1>
+          <p class="hero-lead">
+            Aitong Comprehensive School blends dedicated teaching with modern
+            digital tools, giving every learner in Narok County the resources
+            to study, practice and excel — in the classroom and online.
+          </p>
+          <div class="hero-actions">
+            <a href="#courses" class="btn btn-gold">Get Started</a>
+            <a href="#courses" class="btn btn-ghost">Explore Courses</a>
+          </div>
+          <div class="hero-trust">
+            <div class="trust-item"><strong>2,000+</strong><span>Students</span></div>
+            <div class="trust-item"><strong>80+</strong><span>Teachers</span></div>
+            <div class="trust-item"><strong>95%</strong><span>Success Rate</span></div>
+          </div>
+        </div>
+
+        <div class="hero-art" aria-hidden="true">
+          <svg viewBox="0 0 480 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Student learning illustration">
+            <defs>
+              <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#12326b"/>
+                <stop offset="100%" stop-color="#0B1F3A"/>
+              </linearGradient>
+            </defs>
+            <circle cx="240" cy="240" r="220" fill="url(#skyGrad)"/>
+            <circle cx="240" cy="240" r="220" fill="none" stroke="#D4AF37" stroke-width="2" stroke-opacity="0.5"/>
+            <!-- sun / knowledge circle -->
+            <circle cx="240" cy="120" r="34" fill="#D4AF37"/>
+            <!-- open book -->
+            <g transform="translate(140,240)">
+              <path d="M0,20 C30,0 70,0 100,20 L100,110 C70,90 30,90 0,110 Z" fill="#FFFFFF"/>
+              <path d="M100,20 C130,0 170,0 200,20 L200,110 C170,90 130,90 100,110 Z" fill="#F1EFE7"/>
+              <line x1="100" y1="20" x2="100" y2="110" stroke="#0B1F3A" stroke-width="3"/>
+              <line x1="20" y1="35" x2="85" y2="27" stroke="#0B1F3A" stroke-width="2" opacity="0.35"/>
+              <line x1="20" y1="55" x2="85" y2="47" stroke="#0B1F3A" stroke-width="2" opacity="0.35"/>
+              <line x1="20" y1="75" x2="85" y2="67" stroke="#0B1F3A" stroke-width="2" opacity="0.35"/>
+              <line x1="115" y1="27" x2="180" y2="35" stroke="#0B1F3A" stroke-width="2" opacity="0.35"/>
+              <line x1="115" y1="47" x2="180" y2="55" stroke="#0B1F3A" stroke-width="2" opacity="0.35"/>
+              <line x1="115" y1="67" x2="180" y2="75" stroke="#0B1F3A" stroke-width="2" opacity="0.35"/>
+            </g>
+            <!-- student -->
+            <circle cx="240" cy="190" r="26" fill="#F1EFE7"/>
+            <path d="M195,320 C195,265 285,265 285,320 L285,340 L195,340 Z" fill="#D4AF37"/>
+            <!-- graduation cap -->
+            <polygon points="240,150 285,168 240,186 195,168" fill="#0B1F3A" stroke="#D4AF37" stroke-width="2"/>
+            <circle cx="285" cy="168" r="4" fill="#D4AF37"/>
+            <!-- mara triangles decoration -->
+            <g opacity="0.6">
+              <polygon points="70,400 90,370 110,400" fill="#D4AF37"/>
+              <polygon points="110,400 130,370 150,400" fill="#FFFFFF"/>
+              <polygon points="150,400 170,370 190,400" fill="#D4AF37"/>
+              <polygon points="290,400 310,370 330,400" fill="#FFFFFF"/>
+              <polygon points="330,400 350,370 370,400" fill="#D4AF37"/>
+              <polygon points="370,400 390,370 410,400" fill="#FFFFFF"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <div class="pattern-strip thin" aria-hidden="true"></div>
+
+    <!-- ============ FEATURES ============ -->
+    <section class="features" id="features">
+      <div class="section-inner">
+        <p class="eyebrow center">What we offer</p>
+        <h2 class="section-title center">A Learning Experience Built Around You</h2>
+
+        <div class="feature-grid">
+          <article class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 48 48" width="30" height="30"><path fill="#0B1F3A" d="M6 8h36v26H26l-6 8v-8H6z"/><circle cx="16" cy="20" r="2.4" fill="#D4AF37"/><circle cx="24" cy="20" r="2.4" fill="#D4AF37"/><circle cx="32" cy="20" r="2.4" fill="#D4AF37"/></svg>
+            </div>
+            <h3>Interactive Lessons</h3>
+            <p>Engaging, media-rich lessons that turn every topic into a lesson learners want to explore.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 48 48" width="30" height="30"><circle cx="24" cy="15" r="8" fill="#0B1F3A"/><path fill="#0B1F3A" d="M8 42c0-9 7-16 16-16s16 7 16 16" /><path fill="#D4AF37" d="M24 4l3 6-3 2-3-2z"/></svg>
+            </div>
+            <h3>Expert Teachers</h3>
+            <p>Experienced, qualified educators guiding every learner with patience and expertise.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 48 48" width="30" height="30"><rect x="8" y="6" width="32" height="36" rx="3" fill="#0B1F3A"/><path stroke="#D4AF37" stroke-width="3" fill="none" d="M16 24l6 6 12-14"/></svg>
+            </div>
+            <h3>Online Assessments</h3>
+            <p>Track progress with regular quizzes and tests designed to build confidence and mastery.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">
+              <svg viewBox="0 0 48 48" width="30" height="30"><circle cx="24" cy="18" r="12" fill="#0B1F3A"/><circle cx="24" cy="18" r="7" fill="#D4AF37"/><path fill="#0B1F3A" d="M15 28l-4 16 13-6 13 6-4-16z"/></svg>
+            </div>
+            <h3>Certificates of Completion</h3>
+            <p>Earn recognised certificates that celebrate every milestone in your learning journey.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ POPULAR COURSES ============ -->
+    <section class="courses" id="courses">
+      <div class="section-inner">
+        <p class="eyebrow center">Popular courses</p>
+        <h2 class="section-title center">Subjects Our Learners Love</h2>
+
+        <div class="course-grid">
+
+          <article class="course-card">
+            <div class="course-thumb thumb-1" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#0B1F3A"/><text x="50" y="62" font-size="40" text-anchor="middle" fill="#D4AF37" font-family="Poppins, sans-serif">∑</text></svg>
+            </div>
+            <div class="course-body">
+              <h3>Mathematics</h3>
+              <p>Build strong numeracy and problem-solving skills from basics to advanced topics.</p>
+              <a href="#enroll" class="btn btn-gold btn-sm">Enroll Now</a>
+            </div>
+          </article>
+
+          <article class="course-card">
+            <div class="course-thumb thumb-2" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#12326b"/><text x="50" y="62" font-size="34" text-anchor="middle" fill="#FFFFFF" font-family="Poppins, sans-serif">Aa</text></svg>
+            </div>
+            <div class="course-body">
+              <h3>English</h3>
+              <p>Strengthen grammar, comprehension and communication for everyday and exam success.</p>
+              <a href="#enroll" class="btn btn-gold btn-sm">Enroll Now</a>
+            </div>
+          </article>
+
+          <article class="course-card">
+            <div class="course-thumb thumb-3" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#0B1F3A"/><circle cx="50" cy="50" r="18" fill="none" stroke="#D4AF37" stroke-width="3"/><circle cx="50" cy="50" r="4" fill="#D4AF37"/></svg>
+            </div>
+            <div class="course-body">
+              <h3>Science</h3>
+              <p>Explore biology, chemistry and physics through practical, curiosity-driven lessons.</p>
+              <a href="#enroll" class="btn btn-gold btn-sm">Enroll Now</a>
+            </div>
+          </article>
+
+          <article class="course-card">
+            <div class="course-thumb thumb-4" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#12326b"/><rect x="24" y="30" width="52" height="34" rx="3" fill="#FFFFFF"/><rect x="34" y="70" width="32" height="5" rx="2" fill="#D4AF37"/></svg>
+            </div>
+            <div class="course-body">
+              <h3>Computer Studies</h3>
+              <p>Learn digital literacy, typing and the basics of programming for the modern world.</p>
+              <a href="#enroll" class="btn btn-gold btn-sm">Enroll Now</a>
+            </div>
+          </article>
+
+          <article class="course-card">
+            <div class="course-thumb thumb-5" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#0B1F3A"/><circle cx="50" cy="46" r="20" fill="none" stroke="#D4AF37" stroke-width="3"/><path d="M50 26v40M30 46h40" stroke="#D4AF37" stroke-width="2"/></svg>
+            </div>
+            <div class="course-body">
+              <h3>Social Studies</h3>
+              <p>Understand history, geography and citizenship to become an informed community member.</p>
+              <a href="#enroll" class="btn btn-gold btn-sm">Enroll Now</a>
+            </div>
+          </article>
+
+          <article class="course-card">
+            <div class="course-thumb thumb-6" aria-hidden="true">
+              <svg viewBox="0 0 100 100"><rect width="100" height="100" fill="#12326b"/><text x="50" y="60" font-size="30" text-anchor="middle" fill="#D4AF37" font-family="Poppins, sans-serif">Ki</text></svg>
+            </div>
+            <div class="course-body">
+              <h3>Kiswahili</h3>
+              <p>Master reading, writing and speaking Kiswahili with confidence and cultural pride.</p>
+              <a href="#enroll" class="btn btn-gold btn-sm">Enroll Now</a>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <div class="pattern-strip thin" aria-hidden="true"></div>
+
+    <!-- ============ WHY CHOOSE US ============ -->
+    <section class="why-us" id="about">
+      <div class="section-inner why-inner">
+        <div class="why-copy">
+          <p class="eyebrow">Why families choose us</p>
+          <h2 class="section-title">Trusted by Learners Across Narok County</h2>
+          <p class="hero-lead">
+            For years, Aitong Comprehensive School has combined committed
+            teaching staff with the discipline and structure that helps
+            students thrive, both on campus and through our digital platform.
+          </p>
+
+          <ul class="why-list">
+            <li>
+              <span class="why-num">01</span>
+              <div>
+                <h4>Qualified Teachers</h4>
+                <p>Every subject is led by a certified, experienced educator.</p>
+              </div>
+            </li>
+            <li>
+              <span class="why-num">02</span>
+              <div>
+                <h4>Flexible Learning</h4>
+                <p>Study at your own pace with lessons available anytime.</p>
+              </div>
+            </li>
+            <li>
+              <span class="why-num">03</span>
+              <div>
+                <h4>Modern Digital Resources</h4>
+                <p>Interactive materials that make revision easy and effective.</p>
+              </div>
+            </li>
+            <li>
+              <span class="why-num">04</span>
+              <div>
+                <h4>Excellent Academic Performance</h4>
+                <p>A consistent record of strong exam results, year after year.</p>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="why-art" aria-hidden="true">
+          <svg viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg">
+            <rect x="10" y="10" width="340" height="400" rx="18" fill="#0B1F3A"/>
+            <rect x="10" y="10" width="340" height="400" rx="18" fill="none" stroke="#D4AF37" stroke-width="2"/>
+            <g transform="translate(50,50)">
+              <circle cx="130" cy="70" r="50" fill="#12326b"/>
+              <circle cx="130" cy="70" r="50" fill="none" stroke="#D4AF37" stroke-width="2"/>
+              <path d="M85 130 C85 95 175 95 175 130 L175 160 L85 160 Z" fill="#D4AF37"/>
+              <g transform="translate(0,200)">
+                <rect width="260" height="10" rx="5" fill="#12326b"/>
+                <rect width="190" height="10" rx="5" fill="#D4AF37"/>
+              </g>
+              <g transform="translate(0,230)">
+                <rect width="260" height="10" rx="5" fill="#12326b"/>
+                <rect width="140" height="10" rx="5" fill="#D4AF37"/>
+              </g>
+              <g transform="translate(0,260)">
+                <rect width="260" height="10" rx="5" fill="#12326b"/>
+                <rect width="220" height="10" rx="5" fill="#D4AF37"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ STATISTICS ============ -->
+    <section class="stats">
+      <div class="section-inner stats-grid">
+        <div class="stat-item">
+          <span class="stat-number">2,000+</span>
+          <span class="stat-label">Students</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">80+</span>
+          <span class="stat-label">Teachers</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">50+</span>
+          <span class="stat-label">Online Courses</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">95%</span>
+          <span class="stat-label">Student Success Rate</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="testimonials" id="teachers">
+      <div class="section-inner">
+        <p class="eyebrow center">Testimonials</p>
+        <h2 class="section-title center">What Our Students Say</h2>
+
+        <div class="testimonial-grid">
+          <article class="testimonial-card">
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#12326b"/><circle cx="30" cy="24" r="10" fill="#F1EFE7"/><path d="M12 52c2-12 34-12 36 0" fill="#F1EFE7"/></svg>
+            </div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"The online lessons make revising for exams so much easier. My grades have really improved this term."</p>
+            <h4>Naserian K.</h4>
+            <span class="testimonial-role">Grade 8 Student</span>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#0B1F3A"/><circle cx="30" cy="24" r="10" fill="#F1EFE7"/><path d="M12 52c2-12 34-12 36 0" fill="#F1EFE7"/></svg>
+            </div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"Teachers are always ready to help, and the assessments show me exactly where I need to improve."</p>
+            <h4>Kiptoo M.</h4>
+            <span class="testimonial-role">Grade 7 Student</span>
+          </article>
+
+          <article class="testimonial-card">
+            <div class="avatar" aria-hidden="true">
+              <svg viewBox="0 0 60 60"><circle cx="30" cy="30" r="30" fill="#12326b"/><circle cx="30" cy="24" r="10" fill="#F1EFE7"/><path d="M12 52c2-12 34-12 36 0" fill="#F1EFE7"/></svg>
+            </div>
+            <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <p>"I love that I can go back to a lesson whenever I need to. It's helped me feel more confident."</p>
+            <h4>Wanjiru A.</h4>
+            <span class="testimonial-role">Grade 9 Student</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CALL TO ACTION ============ -->
+    <section class="cta">
+      <div class="section-inner cta-inner">
+        <h2>Ready to Begin Your Learning Journey?</h2>
+        <p>Join hundreds of Aitong students already learning smarter, today.</p>
+        <a href="#login" class="btn btn-gold btn-lg">Join Now</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="site-footer" id="contact">
+    <div class="pattern-strip thin" aria-hidden="true"></div>
+    <div class="section-inner footer-grid">
+      <div class="footer-col footer-brand">
+        <a href="#home" class="brand footer-brand-link">
+          <span class="brand-mark" aria-hidden="true">
+            <svg viewBox="0 0 48 48" width="38" height="38">
+              <polygon points="24,4 44,16 44,32 24,44 4,32 4,16" fill="none" stroke="#D4AF37" stroke-width="2"/>
+              <polygon points="24,12 36,19 36,29 24,36 12,29 12,19" fill="#D4AF37"/>
+            </svg>
+          </span>
+          <span class="brand-text light">Aitong Comprehensive School</span>
+        </a>
+        <p>Empowering students through digital learning, in the heart of the Mara.</p>
+      </div>
+
+      <div class="footer-col">
+        <h5>Quick Links</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#courses">Courses</a></li>
+          <li><a href="#teachers">Teachers</a></li>
+          <li><a href="#about">About</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul class="footer-contact">
+          <li>info@aitongschool.ac.ke</li>
+          <li>+254 700 000 000</li>
+          <li>Aitong, Narok County, Kenya</li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h5>Follow Us</h5>
+        <div class="social-icons">
+          <a href="#" aria-label="Facebook" class="social-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M14 9h3V6h-3c-2 0-3 1-3 3v2H9v3h2v7h3v-7h3l1-3h-4V9c0-.5.3-1 1-1z"/></svg>
+          </a>
+          <a href="#" aria-label="Instagram" class="social-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="X" class="social-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18"><path fill="currentColor" d="M4 4l16 16M20 4L4 20" stroke="currentColor" stroke-width="2"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn" class="social-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18"><rect x="3" y="3" width="18" height="18" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="8" cy="8" r="1.4" fill="currentColor"/><line x1="8" y1="11" x2="8" y2="17" stroke="currentColor" stroke-width="2"/><path d="M12 17v-4c0-2 3-2 3 0v4" stroke="currentColor" stroke-width="2" fill="none"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>&copy; 2026 Aitong Comprehensive School. All rights reserved.</p>
+    </div>
+  </footer>
+
+</body>
+</html>
