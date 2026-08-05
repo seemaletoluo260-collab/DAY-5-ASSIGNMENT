@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!-- SEO -->
+<title>Maternal Support Network — Maternal Health Emergency & Financial Support for Rural Kenya</title>
+<meta name="description" content="Maternal Support Network helps expectant mothers in rural Kenya get emergency help fast, track labour safely, and prepare financially for childbirth — by voice, SMS and USSD, even without internet.">
+<meta name="keywords" content="maternal health Kenya, pregnancy emergency, contraction timer, Linda Mama, SHA SHIF, m-mama transport, rural maternal care, community health worker">
+<meta name="author" content="Maternal Support Network">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://mamasalama.example/">
+<!-- Open Graph / social -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Maternal Support Network — Safer Pregnancies, Stronger Families">
+<meta property="og:description" content="Emergency response, labour monitoring and financial preparedness for expectant mothers in low-resource communities. Works on basic phones.">
+<meta property="og:locale" content="en_KE">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#7d2e46">
+<!-- Structured data for SEO -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"WebApplication",
+  "name":"Maternal Support Network",
+  "applicationCategory":"HealthApplication",
+  "operatingSystem":"Web, USSD, SMS, Voice",
+  "description":"Maternal health emergency response, labour monitoring and financial support assistant for rural and underserved communities in Kenya.",
+  "offers":{"@type":"Offer","price":"0","priceCurrency":"KES"},
+  "audience":{"@type":"Audience","audienceType":"Expectant mothers, community health workers, midwives"}
+}
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,900&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum:#7d2e46;          /* warm maternal plum */
+    --plum-deep:#5c1f33;
+    --rose:#c75d7a;
+    --blush:#f4dde3;
+    --gold:#e0a44e;
+    --teal:#2f7d78;          /* calm clinical teal */
+    --teal-deep:#1f5a56;
+    --cream:#fbf4ef;
+    --cream-dim:#f0e4da;
+    --ink:#2a1f23;
+    --ink-soft:#6b5a60;
+    --emergency:#cf2f3e;
+    --emergency-deep:#9e1f2b;
+    --safe:#2f7d56;
+    --warn:#d98324;
+    --card:#fffaf6;
+    --line:#e6d6cc;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Outfit',sans-serif;
+    background:
+      radial-gradient(circle at 12% 6%, rgba(199,93,122,.10), transparent 32%),
+      radial-gradient(circle at 88% 94%, rgba(47,125,120,.10), transparent 36%),
+      var(--cream);
+    color:var(--ink);line-height:1.55;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,h4{font-family:'Fraunces',serif;font-weight:600;line-height:1.13;letter-spacing:-.01em}
+  .shell{display:flex;min-height:100vh}
+  /* sidebar */
+  .side{width:258px;flex-shrink:0;background:linear-gradient(170deg,var(--plum-deep),var(--plum));
+    color:var(--blush);padding:26px 18px;position:sticky;top:0;height:100vh;overflow-y:auto}
+  .brand{display:flex;align-items:center;gap:11px;margin-bottom:8px}
+  .brand .glyph{width:44px;height:44px;border-radius:14px;background:var(--gold);position:relative;flex-shrink:0;box-shadow:0 4px 16px rgba(0,0,0,.3);display:grid;place-items:center;font-size:1.4rem}
+  .brand b{font-family:'Fraunces',serif;font-size:1.32rem;display:block;line-height:1;color:#fff}
+  .brand span{font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;opacity:.75}
+  .tagline{font-size:.72rem;opacity:.78;margin:14px 4px 20px;font-style:italic;border-left:2px solid var(--gold);padding-left:9px}
+  .navhead{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;opacity:.55;margin:18px 8px 7px}
+  nav button{width:100%;text-align:left;background:none;border:none;color:var(--blush);
+    font-family:'Outfit';font-size:.9rem;padding:10px 12px;border-radius:9px;cursor:pointer;
+    display:flex;align-items:center;gap:10px;margin-bottom:3px;transition:.18s;opacity:.86}
+  nav button:hover{background:rgba(255,255,255,.1);opacity:1}
+  nav button.on{background:var(--gold);color:var(--plum-deep);font-weight:600;opacity:1}
+  nav .ic{width:20px;text-align:center;font-size:1rem}
+  .sos{margin-top:18px;width:100%;background:var(--emergency);color:#fff;border:none;border-radius:12px;
+    padding:14px;font-family:'Fraunces';font-weight:700;font-size:1.02rem;cursor:pointer;box-shadow:0 4px 16px rgba(207,47,62,.45);transition:.15s;line-height:1.2}
+  .sos:hover{background:var(--emergency-deep)}
+  .sos small{display:block;font-family:Outfit;font-weight:400;font-size:.68rem;opacity:.9;margin-top:2px}
+  /* main */
+  .main{flex:1;min-width:0}
+  .topbar{background:var(--card);border-bottom:1px solid var(--line);padding:13px 30px;
+    display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:30;backdrop-filter:blur(6px)}
+  .who{display:flex;align-items:center;gap:11px}
+  .av{width:36px;height:36px;border-radius:50%;background:var(--rose);color:#fff;display:grid;place-items:center;font-weight:600;font-size:.8rem}
+  .seg{display:flex;gap:4px;background:var(--cream-dim);padding:4px;border-radius:10px;flex-wrap:wrap}
+  .seg button{border:none;background:none;padding:6px 11px;border-radius:7px;font-family:'Outfit';font-size:.76rem;cursor:pointer;color:var(--ink-soft);font-weight:500}
+  .seg button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .wrap{padding:28px;max-width:1180px;margin:0 auto}
+  .page{display:none;animation:fade .4s ease}
+  .page.on{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .eyebrow{font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--rose);font-weight:600;margin-bottom:7px}
+  .ph1{font-size:2.1rem;margin-bottom:6px}
+  .lead{color:var(--ink-soft);max-width:640px;margin-bottom:22px}
+  .grid{display:grid;gap:16px}
+  .g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px}
+  a.card{transition:.18s}
+  a.card:hover{border-color:var(--plum);box-shadow:0 4px 14px rgba(0,0,0,.08);transform:translateY(-2px)}
+  .card.tint{background:linear-gradient(160deg,#fff,#fbf0ea)}
+  .stat .n{font-family:'Fraunces';font-size:2rem;font-weight:600;line-height:1;color:var(--plum)}
+  .stat .l{font-size:.74rem;color:var(--ink-soft);margin-top:5px;text-transform:uppercase;letter-spacing:.07em}
+  .stat .d{font-size:.72rem;margin-top:8px;display:inline-block;padding:2px 8px;border-radius:20px;font-weight:600}
+  .up{background:#e3f0e8;color:var(--safe)}.dn{background:#f7e2e0;color:var(--emergency)}
+  .pill{display:inline-block;font-size:.65rem;font-weight:600;letter-spacing:.05em;padding:3px 9px;border-radius:20px;text-transform:uppercase}
+  .badge-good{background:#e3f0e8;color:var(--safe)}.badge-warn{background:#f8edd8;color:var(--warn)}
+  .badge-bad{background:#f7e2e0;color:var(--emergency)}.badge-ink{background:var(--cream-dim);color:var(--ink-soft)}
+  .btn{font-family:'Outfit';font-weight:600;font-size:.85rem;padding:10px 18px;border-radius:11px;border:none;cursor:pointer;transition:.18s}
+  .btn-p{background:var(--plum);color:var(--blush)}.btn-p:hover{background:var(--plum-deep)}
+  .btn-t{background:var(--teal);color:#fff}.btn-t:hover{background:var(--teal-deep)}
+  .btn-o{background:none;border:1.5px solid var(--line);color:var(--ink)}.btn-o:hover{border-color:var(--plum)}
+  .btn-d{background:var(--emergency);color:#fff}.btn-d:hover{background:var(--emergency-deep)}
+  .btn-lg{padding:15px 26px;font-size:1rem;border-radius:13px}
+  table{width:100%;border-collapse:collapse;font-size:.85rem}
+  th{text-align:left;font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);padding:9px 10px;border-bottom:2px solid var(--line)}
+  td{padding:11px 10px;border-bottom:1px solid var(--cream-dim)}
+  tr:hover td{background:#fbf2ec}
+  .sec-title{font-size:1.3rem;margin:28px 0 14px;display:flex;align-items:center;gap:10px}
+  .sec-title::before{content:"";width:5px;height:22px;background:var(--gold);border-radius:3px}
+  .muted{color:var(--ink-soft);font-size:.86rem}
+  .kbar{height:9px;border-radius:6px;background:var(--cream-dim);overflow:hidden;margin-top:6px}
+  .kbar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--rose),var(--gold))}
+  .framework{border-left:4px solid var(--rose);padding:13px 16px;background:#fbf0ea;border-radius:0 10px 10px 0;margin-bottom:13px}
+  .framework b{font-family:'Fraunces';color:var(--plum)}
+  .chip{display:inline-flex;gap:6px;align-items:center;font-size:.72rem;background:var(--cream-dim);padding:5px 11px;border-radius:20px;margin:0 5px 6px 0}
+  .ack{font-size:.75rem;color:var(--ink-soft);border-top:1px dashed var(--line);margin-top:24px;padding-top:14px}
+  .foot{text-align:center;padding:28px;color:var(--ink-soft);font-size:.78rem}
+  .doc{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:30px 34px;line-height:1.7}
+  .doc h2{font-size:1.5rem;margin:0 0 4px}.doc h3{font-size:1.08rem;margin:24px 0 8px;color:var(--plum)}
+  .doc p{margin-bottom:11px}.doc ul{margin:0 0 12px 20px}.doc li{margin-bottom:5px}
+  /* hero */
+  .hero{background:linear-gradient(150deg,var(--plum),var(--plum-deep) 70%);border-radius:20px;padding:34px;color:var(--blush);position:relative;overflow:hidden;margin-bottom:20px}
+  .hero::after{content:"🤰";position:absolute;right:-10px;bottom:-20px;font-size:9rem;opacity:.12}
+  .hero h1{color:#fff;font-size:2.3rem;font-weight:900;max-width:560px;margin-bottom:10px}
+  .hero p{max-width:520px;opacity:.92;margin-bottom:18px}
+  .hero .cta{display:flex;gap:12px;flex-wrap:wrap}
+  .trust{display:flex;gap:18px;flex-wrap:wrap;margin-top:20px;font-size:.76rem;opacity:.9}
+  .trust span{display:flex;align-items:center;gap:6px}
+  /* emergency banner */
+  .ebar{background:linear-gradient(100deg,var(--emergency),var(--emergency-deep));color:#fff;border-radius:14px;padding:16px 20px;display:flex;align-items:center;gap:16px;margin-bottom:18px;box-shadow:0 6px 22px rgba(207,47,62,.3)}
+  .ebar .big{font-size:1.9rem}
+  /* timer */
+  .timer-display{font-family:'Fraunces';font-size:3.6rem;font-weight:700;color:var(--plum);text-align:center;line-height:1;letter-spacing:-.02em}
+  .timer-sub{text-align:center;color:var(--ink-soft);font-size:.82rem;margin-top:4px}
+  .timer-ring{width:170px;height:170px;border-radius:50%;margin:0 auto;display:grid;place-items:center;background:conic-gradient(var(--rose) var(--prog,0%),var(--cream-dim) 0);transition:.3s}
+  .timer-ring .inner{width:142px;height:142px;border-radius:50%;background:var(--card);display:grid;place-items:center}
+  .biginput{font-family:'Fraunces';font-size:1.4rem}
+  /* danger sign card */
+  .dsign{display:flex;gap:12px;align-items:flex-start;padding:13px;border-radius:12px;background:var(--card);border:1px solid var(--line);margin-bottom:9px}
+  .dsign .ic{width:36px;height:36px;border-radius:9px;background:#f7e2e0;display:grid;place-items:center;flex-shrink:0;font-size:1.1rem}
+  /* agents */
+  .agent{background:var(--card);border:1.5px solid var(--line);border-radius:13px;padding:13px;text-align:center;position:relative;transition:.25s}
+  .agent.active{border-color:var(--gold);box-shadow:0 0 0 3px rgba(224,164,78,.28);transform:translateY(-3px)}
+  .agent.done{border-color:var(--safe);background:#f2f9f4}
+  .agent .ring{width:44px;height:44px;border-radius:50%;margin:0 auto 7px;display:grid;place-items:center;font-size:1.25rem;background:var(--cream-dim)}
+  .agent.active .ring{background:var(--gold)}.agent.done .ring{background:#cfe6d4}
+  .agent b{font-size:.8rem;display:block}.agent .role{font-size:.62rem;color:var(--ink-soft);text-transform:uppercase;letter-spacing:.05em;margin-top:2px}
+  .flow{display:grid;grid-template-columns:repeat(5,1fr);gap:9px;margin:18px 0}
+  .console{background:#241a1e;color:#f0d9e0;border-radius:13px;padding:18px;font-family:ui-monospace,Menlo,monospace;font-size:.78rem;min-height:230px;max-height:340px;overflow-y:auto;line-height:1.7}
+  .console .t{color:#8a7a80}.console .a{color:var(--gold)}.console .g{color:#7fe0a0}.console .w{color:#f0c674}.console .pause{color:#ff9b8b;font-weight:600}
+  @media(max-width:880px){.side{display:none}.g2,.g3,.g4{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}.wrap{padding:16px}.hero h1{font-size:1.7rem}}
+</style>
+</head>
+<body>
+<div class="shell">
+  <aside class="side">
+    <div class="brand"><div class="glyph">🌸</div><div><b>Maternal Support Network</b><span>Safe Motherhood</span></div></div>
+    <div class="tagline">Integrated Care for Mothers and Families.</div>
+
+    <div class="navhead">When you need help</div>
+    <nav id="nav">
+      <button data-p="home" class="on"><span class="ic">🏠</span> Home</button>
+      <button data-p="emergency"><span class="ic">🚑</span> Emergency & Transport</button>
+      <button data-p="labour"><span class="ic">⏱️</span> Contraction Timer</button>
+    </nav>
+    <div class="navhead">Your pregnancy</div>
+    <nav>
+      <button data-p="monitor"><span class="ic">💗</span> Health & Danger Signs</button>
+      <button data-p="finance"><span class="ic">💰</span> Financial Support</button>
+      <button data-p="learn"><span class="ic">📚</span> Pregnancy Guide</button>
+    </nav>
+    <div class="navhead">Care team & trust</div>
+    <nav>
+      <button data-p="midwife"><span class="ic">👩🏾‍⚕️</span> Midwife Coordination</button>
+      <button data-p="agents"><span class="ic">🤖</span> Care Engine (Live)</button>
+      <button data-p="impact"><span class="ic">🌱</span> Community Impact</button>
+      <button data-p="ethos"><span class="ic">⚖️</span> Ethics & Data Charter</button>
+    </nav>
+    <button class="sos" onclick="sosNow()">🆘 EMERGENCY<small>Call help & share location</small></button>
+  </aside>
+
+  <div class="main">
+    <div class="topbar">
+      <div class="who">
+        <div class="av" id="av">AW</div>
+        <div>
+          <div style="font-weight:600;font-size:.92rem" id="whoName">Amina Wanjiku</div>
+          <div class="muted" style="font-size:.72rem" id="whoRole">Expectant mother · 34 weeks · Narok</div>
+        </div>
+      </div>
+      <div class="seg" id="roleSeg">
+        <button class="on" data-r="mother">Mother</button>
+        <button data-r="chw">Health Worker</button>
+        <button data-r="midwife">Midwife</button>
+        <button data-r="family">Family</button>
+      </div>
+    </div>
+
+    <div class="wrap">
+
+      <!-- ===== HOME ===== -->
+      <section class="page on" id="p-home">
+        <div class="hero">
+          <div class="eyebrow" style="color:var(--gold)">Maternal health · emergency · financial support</div>
+          <h1>Safer pregnancies, stronger families — in any community.</h1>
+          <p>Maternal Support Network gets you help fast in an emergency, helps you track labour safely, and prepares your family financially for childbirth. By voice, SMS and USSD — so it works even on a basic phone with no internet.</p>
+          <div class="cta">
+            <button class="btn btn-d btn-lg" onclick="go('emergency')">🚑 Get emergency help</button>
+            <button class="btn btn-t btn-lg" onclick="go('labour')">⏱️ Start contraction timer</button>
+          </div>
+          <div class="trust">
+            <span>✓ Works offline (SMS/USSD)</span>
+            <span>✓ Maa · Swahili · English</span>
+            <span>✓ Links to SHA / Linda Mama</span>
+            <span>✓ Human midwife oversight</span>
+          </div>
+        </div>
+
+        <div class="grid g4">
+          <div class="card stat"><div class="n">3</div><div class="l">Delays Maternal Support Network cuts</div><div class="d up">decide · reach · receive care</div></div>
+          <div class="card stat"><div class="n">&lt;5 min</div><div class="l">Target SOS-to-dispatch</div><div class="d up">m-mama style transport</div></div>
+          <div class="card stat"><div class="n">11</div><div class="l">Danger signs monitored</div><div class="d up">WHO/MOH list</div></div>
+          <div class="card stat"><div class="n">100%</div><div class="l">Data under Kenyan governance</div><div class="d up">OASIS / DPA 2019</div></div>
+        </div>
+
+        <h3 class="sec-title">What Maternal Support Network does for you</h3>
+        <div class="grid g3">
+          <div class="card tint"><h4 style="margin-bottom:6px">🚑 Emergency response</h4><p class="muted">One touch alerts an ambulance or community transport, your midwife, the nearest health worker, and your family — with your live location.</p><button class="btn btn-o" style="margin-top:10px" onclick="go('emergency')">Open →</button></div>
+          <div class="card tint"><h4 style="margin-bottom:6px">⏱️ Labour monitoring</h4><p class="muted">A real contraction timer that tells you, in plain language, when it's time to leave for the facility — and warns on danger signs.</p><button class="btn btn-o" style="margin-top:10px" onclick="go('labour')">Open →</button></div>
+          <div class="card tint"><h4 style="margin-bottom:6px">💰 Financial preparedness</h4><p class="muted">A simple birth-savings plan, SHA/Linda Mama guidance, and links to SACCOs, chamas and maternal grants so cost never delays care.</p><button class="btn btn-o" style="margin-top:10px" onclick="go('finance')">Open →</button></div>
+        </div>
+        <p class="muted" style="margin-top:18px">⚠️ Maternal Support Network supports — it does not replace — a doctor, nurse or midwife. In any emergency, contact a skilled health provider immediately. Figures shown are illustrative for this prototype.</p>
+      </section>
+
+      <!-- ===== EMERGENCY ===== -->
+      <section class="page" id="p-emergency">
+        <div class="ebar">
+          <div class="big">🚑</div>
+          <div style="flex:1"><b style="font-family:Fraunces;font-size:1.12rem">In an emergency, don't wait.</b>
+          <div style="font-size:.85rem;opacity:.92">Press the big button below or dial the USSD code. Help and your family are alerted at the same time.</div></div>
+        </div>
+        <div class="eyebrow">Emergency & transport coordination</div>
+        <h1 class="ph1">Emergency Help</h1>
+        <p class="lead">Maternal Support Network tackles the deadly "three delays": deciding to seek care, reaching a facility, and receiving care on arrival. One activation reaches everyone who can help — built on the m-mama community-transport model now backed by Kenya's Ministry of Health.</p>
+
+        <div class="grid g2">
+          <div class="card" style="text-align:center;padding:30px">
+            <h4 style="margin-bottom:14px">Activate emergency</h4>
+            <button class="btn btn-d" style="width:160px;height:160px;border-radius:50%;font-family:Fraunces;font-size:1.2rem;line-height:1.2" onclick="sosNow()">🆘<br>SEND<br>HELP</button>
+            <p class="muted" style="margin-top:16px;font-size:.82rem">No internet? Dial <b>*384*MAMA#</b> on any phone to trigger the same alert by USSD.</p>
+          </div>
+          <div class="card">
+            <h4 style="margin-bottom:10px">Who gets alerted instantly</h4>
+            <div class="dsign"><div class="ic" style="background:#fbeef0">🚐</div><div><b>Nearest transport</b><div class="muted" style="font-size:.8rem">Ambulance or registered m-mama community driver, with your GPS location</div></div></div>
+            <div class="dsign"><div class="ic" style="background:#fbeef0">👩🏾‍⚕️</div><div><b>Your midwife / CHW</b><div class="muted" style="font-size:.8rem">Gets your history and last contraction data</div></div></div>
+            <div class="dsign"><div class="ic" style="background:#fbeef0">🏥</div><div><b>Receiving facility</b><div class="muted" style="font-size:.8rem">Pre-alerted so they're ready when you arrive</div></div></div>
+            <div class="dsign"><div class="ic" style="background:#fbeef0">👨‍👩‍👧</div><div><b>Family contacts</b><div class="muted" style="font-size:.8rem">Up to 3 people you chose, by SMS</div></div></div>
+          </div>
+        </div>
+        <div class="card tint" style="margin-top:16px">
+          <h4 style="margin-bottom:6px">💡 Emergency care is a right — even without insurance</h4>
+          <p class="muted">Under Kenya's Social Health Authority (SHA), emergency, chronic & critical care via the ECCIF is meant to be accessible without upfront premiums. Maternal Support Network shows your nearest facilities and flags this so cost never stops you seeking emergency help. <span style="font-style:italic">Confirm current local procedures with your facility.</span></p>
+        </div>
+      </section>
+
+      <!-- ===== LABOUR TIMER ===== -->
+      <section class="page" id="p-labour">
+        <div class="eyebrow">Contraction & labour monitoring</div>
+        <h1 class="ph1">Contraction Timer</h1>
+        <p class="lead">Tap once when a contraction starts and again when it ends. Maternal Support Network measures how long they last and how far apart they are, and tells you in plain words when it may be time to go.</p>
+        <div class="grid g2">
+          <div class="card" style="text-align:center">
+            <div class="timer-ring" id="ring"><div class="inner"><div><div class="timer-display" id="tDisplay">0:00</div><div class="timer-sub" id="tState">Ready</div></div></div></div>
+            <button class="btn btn-d btn-lg" id="tBtn" style="margin-top:18px;width:80%" onclick="toggleContraction()">▶ Contraction started</button>
+            <button class="btn btn-o" style="margin-top:10px;width:80%" onclick="resetTimer()">Reset session</button>
+          </div>
+          <div>
+            <div class="card" style="margin-bottom:14px">
+              <h4 style="margin-bottom:10px">This session</h4>
+              <div class="grid g3" style="gap:10px">
+                <div class="stat"><div class="n" id="sCount">0</div><div class="l">Contractions</div></div>
+                <div class="stat"><div class="n" id="sAvgLen">—</div><div class="l">Avg length</div></div>
+                <div class="stat"><div class="n" id="sAvgGap">—</div><div class="l">Avg apart</div></div>
+              </div>
+            </div>
+            <div class="card" id="adviceCard">
+              <h4 style="margin-bottom:8px">Guidance</h4>
+              <div id="advice" class="muted">Start timing when a contraction begins. The "5-1-1" guide many nurses use: contractions about <b>5 minutes apart</b>, each lasting <b>1 minute</b>, continuing for <b>1 hour</b> — that often means it's time to head to the facility. Always follow your own midwife's advice first.</div>
+            </div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:14px">
+          <h4 style="margin-bottom:10px">Recent contractions</h4>
+          <table><tr><th>#</th><th>Length</th><th>Time since last</th><th>Started</th></tr><tbody id="contractRows"><tr><td colspan="4" class="muted">No contractions timed yet.</td></tr></tbody></table>
+        </div>
+        <p class="muted" style="margin-top:12px">⚠️ This timer is a guide, not a diagnosis. If you notice any danger sign — bleeding, severe headache, blurred vision, convulsions, reduced baby movement — use Emergency Help now, regardless of the timer.</p>
+      </section>
+
+      <!-- ===== MONITOR / DANGER SIGNS ===== -->
+      <section class="page" id="p-monitor">
+        <div class="eyebrow">Health monitoring · know the warning signs</div>
+        <h1 class="ph1">Health & Danger Signs</h1>
+        <p class="lead">Most maternal emergencies give warning signs first. Learning them — and acting fast — saves lives. If you have any of these, seek skilled care immediately.</p>
+        <div class="card" style="border-color:var(--emergency);background:#fdf3f3;margin-bottom:18px">
+          <h4 style="margin-bottom:10px;color:var(--emergency)">🚨 Go to hospital NOW if you have any of these</h4>
+          <div class="grid g2">
+            <div class="dsign"><div class="ic">🩸</div><div><b>Vaginal bleeding</b><div class="muted" style="font-size:.8rem">any amount during pregnancy</div></div></div>
+            <div class="dsign"><div class="ic">🤕</div><div><b>Severe headache or blurred vision</b><div class="muted" style="font-size:.8rem">possible pre-eclampsia</div></div></div>
+            <div class="dsign"><div class="ic">⚡</div><div><b>Convulsions / fits</b><div class="muted" style="font-size:.8rem">medical emergency</div></div></div>
+            <div class="dsign"><div class="ic">💧</div><div><b>Water breaks early or fluid leaking</b></div></div>
+            <div class="dsign"><div class="ic">👣</div><div><b>Baby moving much less or not at all</b></div></div>
+            <div class="dsign"><div class="ic">🌡️</div><div><b>High fever</b><div class="muted" style="font-size:.8rem">with chills or weakness</div></div></div>
+            <div class="dsign"><div class="ic">🫄</div><div><b>Severe abdominal pain</b></div></div>
+            <div class="dsign"><div class="ic">🦵</div><div><b>Sudden swelling of face, hands or legs</b></div></div>
+          </div>
+          <button class="btn btn-d" style="margin-top:14px" onclick="sosNow()">🆘 I have a danger sign — get help</button>
+        </div>
+        <div class="grid g2">
+          <div class="card"><h4 style="margin-bottom:8px">Track your pregnancy</h4>
+            <div style="font-size:.84rem;margin-bottom:8px">Week 34 of ~40 <div class="kbar"><i style="width:85%"></i></div></div>
+            <p class="muted" style="font-size:.84rem">Next antenatal visit: <b>in 5 days</b>. Maternal Support Network reminds you by SMS and voice in your language, and nudges your CHW if you miss it.</p>
+          </div>
+          <div class="card"><h4 style="margin-bottom:8px">Your risk flags</h4>
+            <p class="muted" style="font-size:.84rem">Set with your midwife — used only to prioritise care, never to deny it.</p>
+            <span class="chip">🩺 First pregnancy</span><span class="chip">📍 &gt;20 km from facility</span><span class="chip badge-warn" style="background:#f8edd8">⚠ Mild anaemia — monitored</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== FINANCE ===== -->
+      <section class="page" id="p-finance">
+        <div class="eyebrow">Financial preparedness · cost should never delay care</div>
+        <h1 class="ph1">Financial Support</h1>
+        <p class="lead">Lack of money for transport, supplies or an emergency is a leading reason care comes too late. Maternal Support Network helps you plan ahead and connects you to programmes you may not know you qualify for.</p>
+        <div class="grid g2">
+          <div class="card">
+            <h4 style="margin-bottom:10px">Birth-savings planner</h4>
+            <label class="muted" style="font-size:.78rem">Weeks until your due date</label>
+            <input id="finWeeks" type="number" value="6" class="biginput" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;margin:4px 0 12px">
+            <label class="muted" style="font-size:.78rem">Target birth fund (KES) — transport, supplies, buffer</label>
+            <input id="finTarget" type="number" value="9000" class="biginput" style="width:100%;padding:10px;border:1px solid var(--line);border-radius:9px;margin:4px 0 12px">
+            <button class="btn btn-t" style="width:100%" onclick="planSavings()">Make my plan →</button>
+            <div id="planOut" style="display:none;margin-top:14px"></div>
+          </div>
+          <div class="card tint">
+            <h4 style="margin-bottom:10px">Programmes you can use</h4>
+            <div class="dsign"><div class="ic" style="background:#e3f0e8">🏛️</div><div><b>SHA / SHIF (formerly Linda Mama)</b><div class="muted" style="font-size:.8rem">Government maternal cover — antenatal, delivery, postnatal. We help you register.</div></div></div>
+            <div class="dsign"><div class="ic" style="background:#e3f0e8">🚑</div><div><b>Emergency fund (ECCIF)</b><div class="muted" style="font-size:.8rem">Emergency care meant to be accessible without upfront premiums.</div></div></div>
+            <div class="dsign"><div class="ic" style="background:#e3f0e8">👛</div><div><b>SACCO & chama savings</b><div class="muted" style="font-size:.8rem">Join or link a group birth-savings plan.</div></div></div>
+            <div class="dsign"><div class="ic" style="background:#e3f0e8">🎁</div><div><b>Maternal health grants</b><div class="muted" style="font-size:.8rem">We check eligibility and guide the application.</div></div></div>
+          </div>
+        </div>
+        <p class="muted" style="margin-top:14px">⚠️ Maternal Support Network gives general guidance, not regulated financial or insurance advice. Confirm current SHA/SHIF benefits and tariffs with an official source before relying on them.</p>
+      </section>
+
+      <!-- ===== LEARN ===== -->
+      <section class="page" id="p-learn">
+        <div class="eyebrow">Pregnancy guide · clear, trusted, in your language</div>
+        <h1 class="ph1">Pregnancy Guide</h1>
+        <p class="lead">Short, practical lessons delivered by voice and SMS, paced to your weeks of pregnancy — co-developed with midwives and reviewed against Ministry of Health guidance.</p>
+        <div class="grid g3">
+          <div class="card"><h4 style="margin-bottom:6px">🍲 Eating well</h4><p class="muted">Iron-rich and varied meals, why anaemia matters, and affordable local foods that help you and your baby.</p></div>
+          <div class="card"><h4 style="margin-bottom:6px">🩺 Antenatal visits</h4><p class="muted">Why at least 8 contacts matter, what happens at each, and how Maternal Support Network reminds you.</p></div>
+          <div class="card"><h4 style="margin-bottom:6px">💊 Medication & supplements</h4><p class="muted">Iron, folate and how to take them safely. Never start new medicine without a provider.</p></div>
+          <div class="card"><h4 style="margin-bottom:6px">🎒 Birth-preparedness plan</h4><p class="muted">Your facility, transport, savings, and who travels with you — decided early, calmly.</p></div>
+          <div class="card"><h4 style="margin-bottom:6px">🤱 After birth</h4><p class="muted">Postnatal danger signs, breastfeeding, newborn care, and postnatal check-ups.</p></div>
+          <div class="card"><h4 style="margin-bottom:6px">🧠 Your wellbeing</h4><p class="muted">Rest, support, and recognising when you need extra help — including emotional support.</p></div>
+        </div>
+      </section>
+
+      <!-- ===== MIDWIFE ===== -->
+      <section class="page" id="p-midwife">
+        <div class="eyebrow">Care-team view · midwife & health-worker coordination</div>
+        <h1 class="ph1">Midwife Coordination</h1>
+        <p class="lead">The view your midwife or community health worker sees — patient records, high-risk tracking, reminders and emergency prioritisation. Shown here so the whole care team works from one trusted picture.</p>
+        <div class="grid g4" style="margin-bottom:18px">
+          <div class="card stat"><div class="n">38</div><div class="l">Mothers in care</div><div class="d up">this CHW</div></div>
+          <div class="card stat"><div class="n">6</div><div class="l">High-risk tracked</div><div class="d dn">priority follow-up</div></div>
+          <div class="card stat"><div class="n">4</div><div class="l">Visits due this week</div><div class="d up">reminders sent</div></div>
+          <div class="card stat"><div class="n">1</div><div class="l">Active emergency</div><div class="d dn">in transit</div></div>
+        </div>
+        <div class="card">
+          <table>
+            <tr><th>Mother</th><th>Weeks</th><th>Risk</th><th>Next visit</th><th>Status</th></tr>
+            <tbody id="patRows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ===== AGENTS ===== -->
+      <section class="page" id="p-agents">
+        <div class="eyebrow">Live prototype · how an emergency is coordinated</div>
+        <h1 class="ph1">Care Engine — Live Demo</h1>
+        <p class="lead">An emergency flows through five coordinated agents: Listener takes the alert (voice/SMS/USSD) → Triage reads danger signs and urgency → Coordinator dispatches transport and care → Companion guides the mother and family → Recorder logs it for the midwife. Each agent is bounded by RANK, hands off via HUNT, watched by GUARD — with PRIDE-Loop human pauses on anything clinical.</p>
+        <div class="flow" id="flow">
+          <div class="agent" data-k="listener"><div class="ring">📞</div><b>Listener</b><div class="role">Intake</div></div>
+          <div class="agent" data-k="triage"><div class="ring">🩺</div><b>Triage</b><div class="role">Urgency</div></div>
+          <div class="agent" data-k="coord"><div class="ring">🚑</div><b>Coordinator</b><div class="role">Dispatch</div></div>
+          <div class="agent" data-k="companion"><div class="ring">💗</div><b>Companion</b><div class="role">Guide mother</div></div>
+          <div class="agent" data-k="recorder"><div class="ring">📚</div><b>Recorder</b><div class="role">Log / midwife</div></div>
+        </div>
+        <div class="grid g2" style="align-items:start">
+          <div>
+            <button class="btn btn-d" id="runBtn" onclick="runSim()">▶ Simulate an emergency</button>
+            <button class="btn btn-o" onclick="resetSim()">Reset</button>
+            <div class="card" style="margin-top:14px">
+              <h4 style="margin-bottom:8px;font-size:.95rem">RANK — bounded autonomy</h4>
+              <p class="muted" style="font-size:.8rem">Role · Authority · Notification · Kill Switch. The Companion can send reassurance and instructions on its own, but dispatching transport or giving any clinical advice requires a human midwife to confirm — and a USSD kill code pauses automation.</p>
+            </div>
+            <div class="card" style="margin-top:12px">
+              <h4 style="margin-bottom:8px;font-size:.95rem">PRIDE Loop — human in the loop</h4>
+              <p class="muted" style="font-size:.8rem">Pause · Review · Interpretability · Disagreement rights · Elders council. No diagnosis is ever automated; a midwife confirms every clinical decision, and the mother can always reach a human.</p>
+            </div>
+          </div>
+          <div><div class="console" id="console"><span class="t">// Maternal Support Network care engine ready. Press Run.</span></div></div>
+        </div>
+      </section>
+
+      <!-- ===== IMPACT ===== -->
+      <section class="page" id="p-impact">
+        <div class="eyebrow">Outcomes · reach · alignment</div>
+        <h1 class="ph1">Community Impact</h1>
+        <p class="lead">What the network has reached so far, illustrative figures for this prototype.</p>
+        <div class="grid g4">
+          <div class="card stat"><div class="n">18,542</div><div class="l">👩 Mothers Registered</div></div>
+          <div class="card stat"><div class="n">86</div><div class="l">🏥 Clinics Connected</div></div>
+          <div class="card stat"><div class="n">1,247</div><div class="l">🚑 Emergencies Resolved</div></div>
+          <div class="card stat"><div class="n">6,981</div><div class="l">👶 Safe Deliveries</div></div>
+          <div class="card stat"><div class="n">KES 12.4M</div><div class="l">💰 Families Supported</div></div>
+        </div>
+
+        <h3 class="sec-title">Innovation</h3>
+        <div class="grid g4">
+          <div class="card tint"><span class="pill badge-good">✓</span> Offline First</div>
+          <div class="card tint"><span class="pill badge-good">✓</span> SMS + USSD Enabled</div>
+          <div class="card tint"><span class="pill badge-good">✓</span> Voice Support</div>
+          <div class="card tint"><span class="pill badge-good">✓</span> Multilingual</div>
+          <div class="card tint"><span class="pill badge-good">✓</span> SHA Integration</div>
+          <div class="card tint"><span class="pill badge-good">✓</span> Real-time Emergency Response</div>
+          <div class="card tint"><span class="pill badge-good">✓</span> Community Health Worker Network</div>
+          <div class="card tint"><span class="pill badge-good">✓</span> Secure Health Records</div>
+        </div>
+
+        <h3 class="sec-title">Sustainable Development Goals</h3>
+        <div class="grid g3" style="grid-template-columns:repeat(5,1fr)">
+          <div class="card" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:6px">🩺</div><b>SDG 3</b><div class="muted" style="font-size:.78rem">Good Health</div></div>
+          <div class="card" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:6px">⚖️</div><b>SDG 5</b><div class="muted" style="font-size:.78rem">Gender Equality</div></div>
+          <div class="card" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:6px">💡</div><b>SDG 9</b><div class="muted" style="font-size:.78rem">Innovation</div></div>
+          <div class="card" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:6px">🤝</div><b>SDG 10</b><div class="muted" style="font-size:.78rem">Reduced Inequalities</div></div>
+          <div class="card" style="text-align:center"><div style="font-size:1.6rem;margin-bottom:6px">🌍</div><b>SDG 17</b><div class="muted" style="font-size:.78rem">Partnerships</div></div>
+        </div>
+
+        <h3 class="sec-title">Trusted By</h3>
+        <div class="grid g3">
+          <a class="card" href="https://www.health.go.ke/" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit"><span class="pill badge-good">✓</span> Ministry of Health Standards</a>
+          <a class="card" href="https://www.who.int/" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit"><span class="pill badge-good">✓</span> WHO Guidelines</a>
+          <a class="card" href="https://sha.go.ke/" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit"><span class="pill badge-good">✓</span> SHA Ready</a>
+          <a class="card" href="https://www.odpc.go.ke/" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit"><span class="pill badge-good">✓</span> Data Privacy Compliant</a>
+          <a class="card" href="https://nckenya.com/" target="_blank" rel="noopener" style="display:block;text-decoration:none;color:inherit"><span class="pill badge-good">✓</span> Community Midwife Network</a>
+        </div>
+        <p class="muted" style="margin-top:18px">⚠️ Figures shown are illustrative for this prototype and must be verified against official sources before launch.</p>
+      </section>
+
+      <!-- ===== ETHOS ===== -->
+      <section class="page" id="p-ethos">
+        <div class="eyebrow">Ethics & data charter · responsible by design</div>
+        <h1 class="ph1">Ethics & Data Charter</h1>
+        <p class="lead">A maternal-health system holds the most sensitive data a person has, in the most vulnerable moments. These frameworks — from the Safari curriculum — keep it safe, fair, sovereign and always under human medical oversight.</p>
+        <div class="doc">
+          <div class="framework"><b>ETHOS</b> — Empathy · Transparency · Human Impact · Ownership · Sovereignty. Who could be harmed by a missed or wrong alert; can a midwife trace why guidance was given; what a delay means for mother and baby; who is clinically accountable; whose data and dignity we protect.</div>
+          <div class="framework"><b>TRACK</b> — Training data · Representation · Amplification · Counterfactuals · Kill Switch. Guards against advice that works for urban mothers but fails pastoralist ones; counterfactual checks across language and location; a kill-switch on any automated triage that drifts.</div>
+          <div class="framework"><b>OASIS</b> — Opt-in · Anonymization · Sovereignty · Intentional retention · Security. Consent in local language; health data stored in-country under the Kenya Data Protection Act 2019; encrypted; minimal retention; never sold. <span class="pill badge-ink">DPA 2019 · health-data sensitive</span></div>
+          <div class="framework"><b>PRIDE Loop</b> — Pause · Review · Interpretability · Disagreement rights · Elders council. Mandatory human (midwife/clinician) confirmation before any clinical action; explanations a CHW in a remote area can act on; a USSD route to a human; governance shared with midwives, mothers and community elders.</div>
+          <div class="framework"><b>HORIZON Scan</b> — Historical harm · Opportunity cost · Ripple effects · Intergenerational · Zero-sum · Open futures · Non-human stakeholders. Does the tool build trust in skilled care or quietly replace it? Does it widen or narrow equity across generations of mothers?</div>
+          <div class="framework"><b>RANK · TRAIL · HUNT · GUARD · CYCLE</b> — the agent layer: bounded autonomy, consent-respecting memory, coordinated handoffs, safety rails, and improvement only with a human clinical brake.</div>
+          <h3>Trust & safety checklist</h3>
+          <table>
+            <tr><th>Control</th><th>Framework</th><th>Status</th></tr>
+            <tr><td>No automated diagnosis — midwife confirms all clinical steps</td><td>PRIDE · RANK</td><td><span class="pill badge-good">Core rule</span></td></tr>
+            <tr><td>Local-language consent, voice & SMS/USSD access</td><td>ETHOS · OASIS</td><td><span class="pill badge-good">Ready</span></td></tr>
+            <tr><td>Health data in-country, encrypted, minimal retention</td><td>OASIS</td><td><span class="pill badge-good">Ready</span></td></tr>
+            <tr><td>Fail-safe: when unsure, escalate to a human</td><td>GUARD</td><td><span class="pill badge-good">Core rule</span></td></tr>
+            <tr><td>Equity audit across language & distance</td><td>TRACK</td><td><span class="pill badge-warn">Pilot</span></td></tr>
+          </table>
+          <div class="ack">Maternal Support Network is a coordination and preparedness tool, not a medical device, and does not diagnose. All clinical decisions rest with qualified providers. Programme names, tariffs and emergency numbers shown are illustrative and must be verified against official Kenyan sources before launch.</div>
+        </div>
+      </section>
+
+    </div>
+    <div class="foot">Maternal Support Network · Maternal health emergency & financial support · Prototype — supports but never replaces a skilled health provider.</div>
+  </div>
+</div>
+
+<script>
+/* nav */
+function go(p){
+  document.querySelectorAll('[data-p]').forEach(x=>x.classList.remove('on'));
+  const btn=document.querySelector('[data-p="'+p+'"]');if(btn)btn.classList.add('on');
+  document.querySelectorAll('.page').forEach(pg=>pg.classList.remove('on'));
+  document.getElementById('p-'+p).classList.add('on');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('#nav button,[data-p]').forEach(b=>b.addEventListener('click',()=>go(b.dataset.p)));
+
+/* roles */
+const profiles={
+  mother:{n:'Amina Wanjiku',r:'Expectant mother · 34 weeks · Narok',i:'AW',c:'#c75d7a'},
+  chw:{n:'Grace Cherono',r:'Community health worker',i:'GC',c:'#2f7d78'},
+  midwife:{n:'Sister Faith',r:'Midwife · Aitong dispensary',i:'SF',c:'#7d2e46'},
+  family:{n:'Daniel (husband)',r:'Family contact',i:'DA',c:'#7a5a2a'}
+};
+document.querySelectorAll('#roleSeg button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('#roleSeg button').forEach(x=>x.classList.remove('on'));b.classList.add('on');
+  const p=profiles[b.dataset.r];whoName.textContent=p.n;whoRole.textContent=p.r;av.textContent=p.i;av.style.background=p.c;
+}));
+
+/* SOS */
+function sosNow(){alert('🆘 EMERGENCY ACTIVATED\n\n• Nearest transport (ambulance / m-mama driver) dispatched to your location\n• Your midwife and community health worker notified with your history\n• Receiving facility pre-alerted\n• Your 3 family contacts messaged\n\nStay calm. Help is on the way. If you can, move to a safe place and keep your phone on.\n\n(Prototype — no real message sent. In a real emergency, contact a skilled health provider immediately.)');}
+
+/* ===== CONTRACTION TIMER (real) ===== */
+let timing=false, startTime=0, tick=null, lastEnd=null;
+let contractions=[]; // {len, gap, startedAt}
+function toggleContraction(){
+  const btn=document.getElementById('tBtn');
+  if(!timing){
+    timing=true;startTime=Date.now();
+    btn.textContent='⏹ Contraction ended';btn.classList.remove('btn-d');btn.classList.add('btn-t');
+    document.getElementById('tState').textContent='Contraction in progress…';
+    tick=setInterval(updateRing,200);
+  } else {
+    timing=false;clearInterval(tick);
+    const len=Math.round((Date.now()-startTime)/1000);
+    const gap=lastEnd?Math.round((startTime-lastEnd)/1000):null;
+    contractions.push({len,gap,startedAt:new Date(startTime)});
+    lastEnd=Date.now();
+    btn.textContent='▶ Contraction started';btn.classList.remove('btn-t');btn.classList.add('btn-d');
+    document.getElementById('tState').textContent='Resting';
+    document.getElementById('ring').style.setProperty('--prog','0%');
+    document.getElementById('tDisplay').textContent='0:00';
+    renderTimer();
+  }
+}
+function updateRing(){
+  const s=Math.floor((Date.now()-startTime)/1000);
+  document.getElementById('tDisplay').textContent=fmt(s);
+  document.getElementById('ring').style.setProperty('--prog',Math.min(100,s/90*100)+'%');
+}
+function fmt(s){return Math.floor(s/60)+':'+String(s%60).padStart(2,'0');}
+function renderTimer(){
+  document.getElementById('sCount').textContent=contractions.length;
+  const lens=contractions.map(c=>c.len);
+  const gaps=contractions.map(c=>c.gap).filter(g=>g!=null);
+  document.getElementById('sAvgLen').textContent=lens.length?fmt(Math.round(lens.reduce((a,b)=>a+b,0)/lens.length)):'—';
+  document.getElementById('sAvgGap').textContent=gaps.length?fmt(Math.round(gaps.reduce((a,b)=>a+b,0)/gaps.length)):'—';
+  // rows (most recent first, max 6)
+  const rows=contractions.slice(-6).reverse().map((c,i)=>{
+    const n=contractions.length-i;
+    return `<tr><td>${n}</td><td>${fmt(c.len)}</td><td>${c.gap!=null?fmt(c.gap):'—'}</td><td>${c.startedAt.toLocaleTimeString('en-GB',{hour:'2-digit',minute:'2-digit'})}</td></tr>`;
+  }).join('');
+  document.getElementById('contractRows').innerHTML=rows||'<tr><td colspan="4" class="muted">No contractions timed yet.</td></tr>';
+  // 5-1-1 advice
+  const adv=document.getElementById('advice');const card=document.getElementById('adviceCard');
+  const recent=contractions.slice(-3);
+  const avgGap=gaps.length?gaps.reduce((a,b)=>a+b,0)/gaps.length:9999;
+  const avgLen=lens.length?lens.reduce((a,b)=>a+b,0)/lens.length:0;
+  if(contractions.length>=3 && avgGap<=300 && avgLen>=45){
+    card.style.borderColor='var(--emergency)';card.style.background='#fdf3f3';
+    adv.innerHTML='<b style="color:var(--emergency)">It may be time to go to the facility.</b><br>Your contractions are close together (about 5 minutes or less apart) and lasting around a minute. Contact your midwife and arrange transport now. Use Emergency Help if you cannot reach anyone.';
+  } else if(contractions.length>=3 && avgGap<=600){
+    card.style.borderColor='var(--warn)';card.style.background='#fdf7ec';
+    adv.innerHTML='<b style="color:var(--warn)">Labour may be progressing.</b><br>Keep timing, stay hydrated, and let your midwife know your contractions are getting regular. Prepare your bag and transport.';
+  } else {
+    card.style.borderColor='var(--line)';card.style.background='var(--card)';
+    adv.innerHTML='Early stage. Keep timing each contraction. The 5-1-1 guide: about <b>5 minutes apart</b>, lasting <b>1 minute</b>, for <b>1 hour</b> often means it\'s time to go — but always follow your own midwife\'s advice, and use Emergency Help for any danger sign.';
+  }
+}
+function resetTimer(){
+  timing=false;if(tick)clearInterval(tick);contractions=[];lastEnd=null;
+  document.getElementById('tDisplay').textContent='0:00';document.getElementById('tState').textContent='Ready';
+  document.getElementById('ring').style.setProperty('--prog','0%');
+  const btn=document.getElementById('tBtn');btn.textContent='▶ Contraction started';btn.classList.remove('btn-t');btn.classList.add('btn-d');
+  renderTimer();
+}
+
+/* savings planner */
+function planSavings(){
+  const w=Math.max(1,+document.getElementById('finWeeks').value||1);
+  const t=Math.max(0,+document.getElementById('finTarget').value||0);
+  const perWeek=Math.ceil(t/w/10)*10;
+  const perDay=Math.ceil(perWeek/7);
+  const out=document.getElementById('planOut');out.style.display='block';
+  out.innerHTML=`<div style="padding:14px;background:#fff;border-radius:11px;border:1px solid var(--line)">
+    <p style="font-size:.92rem;margin-bottom:8px">To reach <b>KES ${t.toLocaleString()}</b> in <b>${w} week${w>1?'s':''}</b>, aim to save about:</p>
+    <div class="grid g2"><div class="stat"><div class="n">KES ${perWeek.toLocaleString()}</div><div class="l">per week</div></div>
+    <div class="stat"><div class="n">KES ${perDay.toLocaleString()}</div><div class="l">per day</div></div></div>
+    <p class="muted" style="font-size:.8rem;margin-top:10px">Tip: set this aside in a SACCO or chama birth-savings plan, and register for SHA/SHIF so most facility costs are already covered — your fund is then mainly for transport, supplies and a buffer.</p></div>`;
+}
+
+/* midwife patients */
+const pats=[
+  ['Amina W.',34,'high','5 days','On track'],
+  ['Mary N.',28,'low','2 weeks','On track'],
+  ['Joyce K.',39,'high','tomorrow','Watch — anaemia'],
+  ['Faith C.',12,'low','3 days','New ANC'],
+  ['Esther M.',40,'high','OVERDUE','⚠ Follow up now'],
+  ['Naomi T.',22,'low','1 week','On track']
+];
+patRows.innerHTML=pats.map(p=>`<tr><td>${p[0]}</td><td>${p[1]}</td><td><span class="pill ${p[2]==='high'?'badge-bad':'badge-good'}">${p[2]}</span></td><td>${p[3]}</td><td>${p[4].includes('⚠')||p[4].includes('Watch')?'<span class="pill badge-warn">'+p[4]+'</span>':p[4]}</td></tr>`).join('');
+
+/* agent sim */
+const con=document.getElementById('console');
+const agents=document.querySelectorAll('#flow .agent');
+let running=false;
+function aline(h){const d=document.createElement('div');d.innerHTML=h;con.appendChild(d);con.scrollTop=con.scrollHeight;}
+function setState(k,s){agents.forEach(a=>{if(a.dataset.k===k){a.classList.remove('active','done');a.classList.add(s);}});}
+const wait=ms=>new Promise(r=>setTimeout(r,ms));
+async function runSim(){
+  if(running)return;running=true;runBtn.textContent='● running…';
+  con.innerHTML='';agents.forEach(a=>a.classList.remove('active','done'));
+  const t=()=>new Date().toLocaleTimeString('en-GB',{hour12:false});
+  aline(`<span class="t">[${t()}] // Incoming: USSD emergency from Amina W., 34 wks, Narok — "bleeding"</span>`);await wait(450);
+  setState('listener','active');aline(`<span class="a">LISTENER</span> receiving alert (USSD, no internet) + locating…`);await wait(800);
+  aline(`<span class="g">  ✓ identity matched · GPS approx · preferred language: Swahili</span>`);
+  aline(`<span class="t">  → HUNT handoff to TRIAGE</span>`);setState('listener','done');await wait(600);
+  setState('triage','active');aline(`<span class="a">TRIAGE</span> screening reported danger signs…`);await wait(850);
+  aline(`<span class="w">  ⚠ "bleeding" = red-flag obstetric danger sign · urgency = CRITICAL</span>`);
+  aline(`<span class="pause">  ⛔ GUARD: no automated diagnosis · clinical decision → PRIDE pause</span>`);
+  aline(`<span class="w">  ⏸ paging on-call midwife (Sister Faith) to confirm…</span>`);await wait(1400);
+  aline(`<span class="g">  ✓ midwife confirms: dispatch transport + alert facility now</span>`);setState('triage','done');await wait(600);
+  setState('coord','active');aline(`<span class="a">COORDINATOR</span> dispatching nearest m-mama driver + pre-alerting facility…`);await wait(850);
+  aline(`<span class="g">  ✓ driver en route (ETA 9 min) · Narok facility ready · ECCIF emergency flagged</span>`);setState('coord','done');await wait(600);
+  setState('companion','active');aline(`<span class="a">COMPANION</span> guiding mother + family in Swahili (voice + SMS)…`);await wait(800);
+  aline(`<span class="g">  ✓ calm instructions sent · 3 family contacts notified · stay-safe steps voiced</span>`);setState('companion','done');await wait(600);
+  setState('recorder','active');aline(`<span class="a">RECORDER</span> logging under OASIS · updating midwife record…`);await wait(800);
+  aline(`<span class="g">  ✓ encrypted in-country · audit trail + reasoning saved for review</span>`);setState('recorder','done');await wait(400);
+  aline(`<span class="t">[${t()}] // Mother reached care in time · case handed to facility team.</span>`);
+  runBtn.textContent='▶ Simulate an emergency';running=false;
+}
+function resetSim(){con.innerHTML='<span class="t">// Maternal Support Network care engine ready. Press Run.</span>';agents.forEach(a=>a.classList.remove('active','done'));}
+</script>
+</body>
+</html>
